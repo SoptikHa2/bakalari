@@ -14,12 +14,9 @@ main(List<String> args) {
 
 void someAsyncFunction(String username, String password, String uri) async{
   var bkw = Bakalari(Uri.parse(uri));
-  await bkw.logIn(username, password).then((_) => print('Should be logged in'));
-  print('Continue...');
+  await bkw.logIn(username, password);
   var grades = await bkw.getGrades();
-  print('Grades:');
   for (var grade in grades) {
-    print('Grade:');
     print(grade);
   }
 }

@@ -72,9 +72,6 @@ class Bakalari{
   /// This method reloads school, user, and allowed school modules.
   /// You shouldn't need to call this method at normal circumstances.
   Future<void> _reloadBaseInfo(String authKey) async {
-
-    print(authKey);
-
     var client = http.Client();
     http.Response response;
     try{
@@ -86,7 +83,6 @@ class Bakalari{
     if(response.statusCode != 200){
       throw BadResponseError("Unexpected status code $response", StackTrace.current);
     }
-    print(response.body);
     var xmlPayload = xml.parse(response.body);
 
     _school = new School();
@@ -99,12 +95,9 @@ class Bakalari{
     _student.name = xmlPayload.findAllElements('jmeno').first.text;
     _student.schoolClass = xmlPayload.findAllElements('trida').first.text;
     _student.year = int.parse(xmlPayload.findAllElements('rocnik').first.text);
-
-    print('Logged in');
   }  
 
   Future<List<Grade>> getGrades() async {
-    print('Getting grades');
     var module = GradeModule();
     if(!school.allowedModules.contains(module.identifier))
       throw UnsupportedError("Module ${module.identifier} is not allowed by school system.");
