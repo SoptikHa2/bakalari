@@ -1,4 +1,4 @@
-library bakalari.core;
+library bakalari.core.errors;
 
 /// This error is thrown whenever library receives bad response from server,
 /// be it wrong status code or response format.
