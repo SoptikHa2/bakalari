@@ -1,8 +1,8 @@
-library bakalari.core;
+library bakalari;
 
 import 'package:bakalari/src/badResponseError.dart';
-import 'package:bakalari/student.dart';
-import 'package:bakalari/school.dart';
+import 'package:bakalari/src/student.dart';
+import 'package:bakalari/src/school.dart';
 import 'package:bakalari/src/gradeModule.dart';
 import 'package:bakalari/src/timetableModule.dart';
 import 'package:bakalari/src/privateMessagesModule.dart';

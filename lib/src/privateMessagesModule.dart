@@ -50,6 +50,12 @@ class PrivateMessagesModule {
   }
 }
 
+/// Private message sent to user.
+/// 
+/// **WARNING:** Potential XSS vulnerability.
+/// Content of the message is *unescaped* HTML.
+/// Always be careful about whatever you do
+/// with this.
 class PrivateMessage {
   /// Id of the private message
   String id;
