@@ -1,3 +1,8 @@
+/// Package that allows reading data from Czech
+/// school system Bakaláři. This unofficial
+/// library grants access to data that may be
+/// locked in the official app - for example
+/// all grades weights.
 library bakalari;
 
 import 'package:bakalari/src/badResponseError.dart';

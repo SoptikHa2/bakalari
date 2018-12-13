@@ -5,6 +5,8 @@ This library is directly based on [vakabus/pybakalib](https://github.com/vakabus
 
 For additional technical informations, see [doc/how_it_works.md](https://github.com/SoptikHa2/bakalari/blob/master/doc/how_it_works.md).
 
+If you are coming from GitHub, the package can be found at [pub.dartlang.org](https://pub.dartlang.org/packages/bakalari).
+
 ## Install
 Open `pubspec.yaml` of your project and into dependencies, insert following line:
 ```

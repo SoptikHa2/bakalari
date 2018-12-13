@@ -7,6 +7,7 @@ description: >-
         locked in the official app - for example
         all grades weights.
 author: Petr Šťastný <petr.stastny01@gmail.com>
+homepage: https://github.com/SoptikHa2/bakalari
 environment:
         sdk: '>=2.1.0 <3.0.0'
 dependencies:
