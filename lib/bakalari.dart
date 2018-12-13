@@ -4,7 +4,10 @@ import 'package:bakalari/src/badResponseError.dart';
 import 'package:bakalari/student.dart';
 import 'package:bakalari/school.dart';
 import 'package:bakalari/src/gradeModule.dart';
+import 'package:bakalari/src/timetableModule.dart';
+
 import 'dart:convert';
+
 // We need XML library to parse server response
 import 'package:xml/xml.dart' as xml;
 // We need HTTP library to send requests to server
@@ -102,7 +105,15 @@ class Bakalari{
     if(!school.allowedModules.contains(module.identifier))
       throw UnsupportedError("Module ${module.identifier} is not allowed by school system.");
     
-    return module.getResult(_generateAuthToken(), _schoolAddress);
+    return await module.getResult(_generateAuthToken(), _schoolAddress);
+  }
+
+  Future<Timetable> getTimetable() async {
+    var module = TimetableModule();
+    if(!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError("Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress);
   }
 
   /// This generates long-term key. Key generated from this method
@@ -130,6 +141,6 @@ class Bakalari{
     var date = intl.DateFormat("yyyyMMdd").format(now);
     var sha512 = pointycastle.Digest("SHA-512");
     var result = sha512.process(utf8.encode(_key + date));
-    return base64.encode(result).replaceAll('+', '-').replaceAll('/', '_');
+    return base64Url.encode(result);
   }
 }

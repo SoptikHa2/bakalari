@@ -34,4 +34,12 @@ Xml is returned, it has all student's grades from this year. Grade weight is sto
 ## Time table
 We send `GET` request as usual, `pm=rozvrh`.
 
-Xml is returned, it describes 
+The structure contains of days, lesson hours, and the actual lessons data. The format in which this library outputs the timetable might be a little confusing.
+
+In timetable, you can see `times` - in there, it's declared when each lessons starts and ends. This doesn't mean a lesson is sheduled on this time. This is there to help you with visual format creation.
+
+Timetable offers you to access `days` - Each day consists of the actual lessons. The lessons have
+`isSet` attribute. If it's set to `true`, the lesson is there and you can check out additional fields. If it's `false`, there is probably no lesson in given timeframe and it makes no sence to
+check additional fields.
+
+Apart from many other fields, each lesson has reference to lessontime - it's reference to the same object as is in the `timetable.times` field.

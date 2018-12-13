@@ -1,6 +1,7 @@
-library bakalari.modules;
+library bakalari.modules.grade;
 
 import 'package:bakalari/src/badResponseError.dart';
+import 'package:bakalari/src/helpers.dart';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
@@ -117,16 +118,7 @@ class Grade {
   /// Bakaweb date format is in format `yyMMddHHmm`.
   Grade(this.subject, this.value, String bakawebDateFormat, this.caption,
       this.note, this.weight) {
-    // I'll be VERY surprised if this code ever caeses to work because of the magic number '2000'.
-    // If it suddenly breakes, find me (or my family).
-    // I bet they'd be surprised to hear from someone because he used my library from year 2018. :)
-    // Hell, feel free to email me (see package author info) if you use this code in 2050.
-    date = DateTime(
-        2000 + int.parse(bakawebDateFormat.substring(0, 2)),
-        int.parse(bakawebDateFormat.substring(2, 4)),
-        int.parse(bakawebDateFormat.substring(4, 6)),
-        int.parse(bakawebDateFormat.substring(6, 8)),
-        int.parse(bakawebDateFormat.substring(8, 10)));
+    this.date = Helpers.bakawebDateTimeToDateTime(bakawebDateFormat);
   }
 
   @override
