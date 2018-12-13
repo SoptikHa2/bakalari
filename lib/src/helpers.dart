@@ -16,16 +16,14 @@ class Helpers {
         int.parse(date.substring(8, 10)));
   }
 
-    /// Convert date from bakaweb format
+  /// Convert date from bakaweb format
   /// (like: 20181210) to 2018-12-10 (yyyy-MM-dd)
   /// and return as Dart DateTime format.
   static DateTime bakawebDateToDateTime(String date) {
     // I'll be VERY surprised if this code ever caeses to work because of the magic number '2000'.
     // If it suddenly breakes, find me (or my family).
     // I bet they'd be surprised to hear from someone because he used my library from year 2018. :)
-    return DateTime(
-        int.parse(date.substring(0, 4)),
-        int.parse(date.substring(4, 6)),
-        int.parse(date.substring(6, 8)));
+    return DateTime(int.parse(date.substring(0, 4)),
+        int.parse(date.substring(4, 6)), int.parse(date.substring(6, 8)));
   }
 }

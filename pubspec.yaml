@@ -1,11 +1,9 @@
 name: bakalari
-version: 0.1.0
+version: 0.1.1
 description: >-
-        Package that allows reading data from Czech
-        school system Bakaláři. This unofficial
-        library grants access to data that may be
-        locked in the official app - for example
-        all grades weights.
+        Wrapper for Czech school system Bakaláři. 
+        Grants access to data that are not accessible
+        by official app.
 author: Petr Šťastný <petr.stastny01@gmail.com>
 homepage: https://github.com/SoptikHa2/bakalari
 environment:
