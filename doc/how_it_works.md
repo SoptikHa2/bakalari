@@ -32,9 +32,9 @@ We send `GET` request to the school system (page `/login.aspx/`), with query str
 Xml is returned, it has all student's grades from this year. Grade weight is stored in field `ozn`, where is weight identifier (type of grade). We can get the exact numeric weight by querying `pm=predvidac` (the same way as before), which has list of weight identifiers and the numerical weight values.
 
 ## Time table
-We send `GET` request as usual, `pm=rozvrh`.
+We send `GET` request as usual, `pm=rozvrh` and `hx=authKey`.
 
-The structure contains of days, lesson hours, and the actual lessons data. The format in which this library outputs the timetable might be a little confusing.
+The structure contains days, lesson hours, and the actual lessons data. The format in which this library outputs the timetable might be a little confusing.
 
 In timetable, you can see `times` - in there, it's declared when each lessons starts and ends. This doesn't mean a lesson is sheduled on this time. This is there to help you with visual format creation.
 
@@ -43,3 +43,10 @@ Timetable offers you to access `days` - Each day consists of the actual lessons.
 check additional fields.
 
 Apart from many other fields, each lesson has reference to lessontime - it's reference to the same object as is in the `timetable.times` field.
+
+## PMs
+Private messages can be received just like everything else. Actually writing, or confirming PMs as read is not supported.
+
+We send `GET` request as usual, `pm=prijate` and `hx=authkey`.
+
+Structure is pretty simple, there is no need to describe it here.

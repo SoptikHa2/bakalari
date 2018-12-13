@@ -1,4 +1,4 @@
-library bakalari.core.definition.school;
+library bakalari.core.school;
 
 class School{
   /// Link to school's bakaweb login page

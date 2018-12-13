@@ -5,6 +5,7 @@ import 'package:bakalari/student.dart';
 import 'package:bakalari/school.dart';
 import 'package:bakalari/src/gradeModule.dart';
 import 'package:bakalari/src/timetableModule.dart';
+import 'package:bakalari/src/privateMessagesModule.dart';
 
 import 'dart:convert';
 
@@ -100,6 +101,9 @@ class Bakalari{
     _student.year = int.parse(xmlPayload.findAllElements('rocnik').first.text);
   }  
 
+  /// Get grades from school system.
+  /// Grades module has to be allowed by your school.
+  /// See `Grade` class for more info about output.
   Future<List<Grade>> getGrades() async {
     var module = GradeModule();
     if(!school.allowedModules.contains(module.identifier))
@@ -108,8 +112,26 @@ class Bakalari{
     return await module.getResult(_generateAuthToken(), _schoolAddress);
   }
 
+  /// Get timetable from school system.
+  /// Timetable ahs to be allowed by your school.
+  /// See `Timetable` class for more info about output.
   Future<Timetable> getTimetable() async {
     var module = TimetableModule();
+    if(!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError("Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress);
+  }
+
+  /// Get PMs sent to you this year from school system.
+  /// PMs are read-only, there is no way how to compose
+  /// messages via this library at the moment.
+  /// 
+  /// **WARNING:** Content of PMs contain unescaped HTML,
+  /// which might result in XSS. Always be careful when
+  /// you deal with PMs.
+  Future<List<PrivateMessage>> getMessages() async {
+    var module = PrivateMessagesModule();
     if(!school.allowedModules.contains(module.identifier))
       throw UnsupportedError("Module ${module.identifier} is not allowed by school system.");
 

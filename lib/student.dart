@@ -1,4 +1,4 @@
-library bakalari.core.definition.student;
+library bakalari.core.student;
 
 /// This is student class.
 /// Each student class is associated with one
