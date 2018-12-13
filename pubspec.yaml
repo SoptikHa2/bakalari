@@ -1,10 +1,11 @@
 name: bakalari
 version: 0.1.0
 description: >-
-        This package grants unofficial access to Bakaweb.
-        Bakaweb is information system used in Czech schools.
-        This package allows reading timetable, marks (including their's weights,
-        even when not public by school) and subject average.
+        Package that allows reading data from Czech
+        school system Bakaláři. This unofficial
+        library grants access to data that may be
+        locked in the official app - for example
+        all grades weights.
 author: Petr Šťastný <petr.stastny01@gmail.com>
 environment:
         sdk: '>=2.1.0 <3.0.0'
