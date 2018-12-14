@@ -27,6 +27,7 @@ void someAsyncFunction(String username, String password, String uri) async {
   for (var grade in grades) {
     print(grade);
   }
+
   var timetable = await bkw.getTimetable();
   print('Timetable is done!');
   print(
@@ -36,5 +37,15 @@ void someAsyncFunction(String username, String password, String uri) async {
   print('Messages:');
   for (var message in pms) {
     print(message);
+  }
+
+  var hws = await bkw.getHomeworks();
+  for (var hw in hws) {
+    print(hw);
+  }
+
+  var subjects = await bkw.getSubjects();
+  for (var subject in subjects) {
+    print(subject);
   }
 }

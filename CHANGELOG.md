@@ -1,3 +1,6 @@
+### Version 0.1.2
+Added homework module and subject list module.
+
 ### Version 0.1.1
 Fixed issues with format. Shortened package description.
 

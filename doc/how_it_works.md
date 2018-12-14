@@ -50,3 +50,13 @@ Private messages can be received just like everything else. Actually writing, or
 We send `GET` request as usual, `pm=prijate` and `hx=authkey`.
 
 Structure is pretty simple, there is no need to describe it here.
+
+## Homeworks
+Homeworks can be fetched from server. They might include some attachments, but one need to be logged into Bakaweb service to actually download them.
+
+We send `GET` request as usual, `pm=ukoly` and `hx=authkey`.
+
+## Subject list
+list of subjects can be fetched from server.
+
+We send `GET` request as usual, `pm=predmety` and `hx=authkey`.

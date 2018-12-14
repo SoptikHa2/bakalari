@@ -6,9 +6,8 @@ import 'package:bakalari/src/helpers.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
 
-/// This module takes care of getting grades from school system.
-/// When enabled, this can get even data that is inaccessible via
-/// official means. See `Grade` for structure of returned object.
+/// This module takes care of getting PMs from school system.
+/// See `PrivateMessage` for structure of returned object.
 class PrivateMessagesModule {
   /// Identifier inside the school system
   String identifier = "prijate";

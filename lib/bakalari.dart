@@ -8,9 +8,11 @@ library bakalari;
 import 'package:bakalari/src/badResponseError.dart';
 import 'package:bakalari/src/student.dart';
 import 'package:bakalari/src/school.dart';
-import 'package:bakalari/src/gradeModule.dart';
-import 'package:bakalari/src/timetableModule.dart';
-import 'package:bakalari/src/privateMessagesModule.dart';
+import 'package:bakalari/src/modules/gradeModule.dart';
+import 'package:bakalari/src/modules/timetableModule.dart';
+import 'package:bakalari/src/modules/privateMessagesModule.dart';
+import 'package:bakalari/src/modules/homeworkModule.dart';
+import 'package:bakalari/src/modules/subjectListModule.dart';
 
 import 'dart:convert';
 
@@ -131,7 +133,7 @@ class Bakalari {
   }
 
   /// Get timetable from school system.
-  /// Timetable ahs to be allowed by your school.
+  /// Timetable has to be allowed by your school.
   /// See `Timetable` class for more info about output.
   Future<Timetable> getTimetable() async {
     var module = TimetableModule();
@@ -151,6 +153,30 @@ class Bakalari {
   /// you deal with PMs.
   Future<List<PrivateMessage>> getMessages() async {
     var module = PrivateMessagesModule();
+    if (!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError(
+          "Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress);
+  }
+
+  /// Get homeworks from school system.
+  /// Homeworks has to be allowed by your school.
+  /// See `Homework` class for more info about output.
+  Future<List<Homework>> getHomeworks() async {
+    var module = HomeworkModule();
+    if (!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError(
+          "Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress);
+  }
+
+  /// Get list of subjects from school system.
+  /// Subject list has to be allowed by your school.
+  /// See `Subject` class for more info about output.
+  Future<List<Subject>> getSubjects() async {
+    var module = SubjectListModule();
     if (!school.allowedModules.contains(module.identifier))
       throw UnsupportedError(
           "Module ${module.identifier} is not allowed by school system.");
