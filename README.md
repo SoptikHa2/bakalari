@@ -1,9 +1,7 @@
 # Bakaláři
-Bakaláři is Dart library that can be used for accessing Bakaweb API. Bakaláři (Bakaweb) is Czech school system. This library allows gathering information like grades, timetable, PMs, homeworks, or subject average.
+Bakaláři is Dart library that can be used for accessing Bakaweb API. Bakaláři (Bakaweb) is Czech school system. This library allows gathering information like grades, timetable, PMs, or homeworks.
 
 This library is directly based on [vakabus/pybakalib](https://github.com/vakabus/pybakalib/).
-
-For additional technical informations, see [doc/how_it_works.md](https://github.com/SoptikHa2/bakalari/blob/master/doc/how_it_works.md).
 
 If you are coming from GitHub, the package can be found at [pub.dartlang.org](https://pub.dartlang.org/packages/bakalari).
 
