@@ -24,3 +24,8 @@ Now, you can call `.getGrades()`, `.getMessages()` and `.getTimetable()` on the 
 See [example/main.dart](https://github.com/SoptikHa2/bakalari/blob/master/example/main.dart) for example code.
 
 If you run into any problems, [create GitHub issue](https://github.com/SoptikHa2/bakalari/issues) and I'll get into it as soon as possible.
+
+# Other community projects
+
+- [pybakalib](https://github.com/vakabus/pybakalib/) is python library that powers the alternative Bakaweb website, [Bakaweb.tk](https://www.bakaweb.tk/).
+- [bakalari-api](https://github.com/bakalari-api/bakalari-api) is unofficial documentation of Bakaweb API. Apart from documentation, this organization provides some unofficial apps that use the Bakaweb API.
