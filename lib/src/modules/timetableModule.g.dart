@@ -21,8 +21,8 @@ Timetable _$TimetableFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$TimetableToJson(Timetable instance) => <String, dynamic>{
-      'days': instance.days,
-      'times': instance.times,
+      'days': instance.days?.map((d) => d.toJson())?.toList(),
+      'times': instance.times?.map((t) => t.toJson())?.toList(),
       'currentCycleID': instance.currentCycleID,
       'currentCycleCaption': instance.currentCycleCaption
     };
@@ -39,7 +39,7 @@ Day _$DayFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$DayToJson(Day instance) => <String, dynamic>{
-      'lessons': instance.lessons,
+      'lessons': instance.lessons?.map((m) => m.toJson())?.toList(),
       'date': instance.date?.toIso8601String(),
       'shortName': instance.shortName
     };
@@ -75,7 +75,7 @@ Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
       'change': instance.change,
       'classGroupLong': instance.classGroupLong,
       'classGroupShort': instance.classGroupShort,
-      'lessonTime': instance.lessonTime,
+      'lessonTime': instance.lessonTime.toJson(),
       'isSet': instance.isSet
     };
 

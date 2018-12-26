@@ -1,4 +1,4 @@
-### Version 0.1.4, 0.1.5
+### Version 0.1.4, 0.1.5, 0.1.6
 Serialization hotfix
 
 ### Version 0.1.3
