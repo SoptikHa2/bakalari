@@ -1,3 +1,6 @@
+### Version 0.1.3
+Added serialization support ([json_serializable](https://pub.dartlang.org/packages/json_serializable))
+
 ### Version 0.1.2
 Added homework module and subject list module.
 

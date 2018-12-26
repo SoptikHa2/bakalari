@@ -6,6 +6,9 @@ import 'package:bakalari/src/helpers.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
 
+import 'package:json_annotation/json_annotation.dart';
+part 'timetableModule.g.dart';
+
 /// This class takes care of getting time table from school system.
 /// See `Timetable` for structure of return object.
 class TimetableModule {
@@ -122,6 +125,7 @@ class Day {
 ///
 /// Check out artifical `isSet` field to know
 /// if the lesson is in the timetable.
+@JsonSerializable()
 class Lesson {
   /// Type of lesson, one letter code
   String type;
@@ -162,11 +166,37 @@ class Lesson {
   /// probably there is no lesson sheduled and it makes no sence to try to get
   /// additional info about this lesson.
   bool isSet;
+
+  Lesson(
+      {this.type,
+      this.teacherLong,
+      this.teacherShort,
+      this.subjectShort,
+      this.subjectLong,
+      this.change,
+      this.classGroupLong,
+      this.classGroupShort,
+      this.classroom,
+      this.id,
+      this.isSet,
+      this.lessonContent,
+      this.lessonTime});
+
+  factory Lesson.fromJson(Map<String, dynamic> json) =>
+      _$LessonFromJson(json);
+  Map<String, dynamic> toJson() => _$LessonToJson(this);
 }
 
 /// This is time when lesson occurs.
+@JsonSerializable()
 class LessonTime {
   String caption;
   String beginTime;
   String endTime;
+
+  LessonTime({this.caption, this.beginTime, this.endTime});
+
+  factory LessonTime.fromJson(Map<String, dynamic> json) =>
+      _$LessonTimeFromJson(json);
+  Map<String, dynamic> toJson() => _$LessonTimeToJson(this);
 }

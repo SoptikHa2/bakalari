@@ -1,5 +1,5 @@
 name: bakalari
-version: 0.1.2
+version: 0.1.3
 description: >-
         Wrapper for Czech school system Bakaláři. 
         Grants access to data that are not accessible
@@ -13,3 +13,8 @@ dependencies:
         xml: ^3.2.3
         intl: ^0.15.7
         pointycastle: ^1.0.0-rc4
+        json_annotation: ^2.0.0
+
+dev_dependencies:
+        json_serializable: ^2.0.1
+        build_runner: ^1.1.2

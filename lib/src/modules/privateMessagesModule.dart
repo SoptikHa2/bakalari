@@ -6,6 +6,9 @@ import 'package:bakalari/src/helpers.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
 
+import 'package:json_annotation/json_annotation.dart';
+part 'privateMessagesModule.g.dart';
+
 /// This module takes care of getting PMs from school system.
 /// See `PrivateMessage` for structure of returned object.
 class PrivateMessagesModule {
@@ -44,7 +47,8 @@ class PrivateMessagesModule {
       content = content.replaceFirst('<![CDATA[', '');
       content.substring(
           0, content.length - 3); // Remove ]]> from end of message
-      pms.add(PrivateMessage(id, content, title, sender, type, dateTime));
+      pms.add(PrivateMessage.fromBakawebDateTime(
+          id, content, title, sender, type, dateTime));
     }
 
     return pms;
@@ -57,6 +61,7 @@ class PrivateMessagesModule {
 /// Content of the message is *unescaped* HTML.
 /// Always be careful about whatever you do
 /// with this.
+@JsonSerializable()
 class PrivateMessage {
   /// Id of the private message
   String id;
@@ -86,10 +91,22 @@ class PrivateMessage {
   /// Type of message
   String type;
 
-  PrivateMessage(this.id, this.content, this.title, this.senderName, this.type,
-      String dateTime) {
+  PrivateMessage(
+      {this.id,
+      this.content,
+      this.title,
+      this.senderName,
+      this.type,
+      this.dateTime});
+
+  PrivateMessage.fromBakawebDateTime(this.id, this.content, this.title,
+      this.senderName, this.type, String dateTime) {
     this.dateTime = Helpers.bakawebDateTimeToDateTime(dateTime);
   }
+
+  factory PrivateMessage.fromJson(Map<String, dynamic> json) =>
+      _$PrivateMessageFromJson(json);
+  Map<String, dynamic> toJson() => _$PrivateMessageToJson(this);
 
   @override
   String toString() {

@@ -6,6 +6,9 @@ import 'package:bakalari/src/helpers.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
 
+import 'package:json_annotation/json_annotation.dart';
+part 'homeworkModule.g.dart';
+
 /// This module takes care of getting homeworks from school system.
 /// See `Homework` for structure of returned object.
 class HomeworkModule {
@@ -51,6 +54,7 @@ class HomeworkModule {
   }
 }
 
+@JsonSerializable()
 class Homework {
   /// Long subject name (`Math`)
   String subjectLong;
@@ -66,6 +70,19 @@ class Homework {
   String status;
 
   String title;
+
+  Homework(
+      {this.subjectLong,
+      this.id,
+      this.subjectShort,
+      this.from,
+      this.status,
+      this.title,
+      this.to});
+
+  factory Homework.fromJson(Map<String, dynamic> json) =>
+      _$HomeworkFromJson(json);
+  Map<String, dynamic> toJson() => _$HomeworkToJson(this);
 
   @override
   String toString() {

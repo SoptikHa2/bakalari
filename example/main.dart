@@ -9,7 +9,10 @@ main(List<String> args) {
   print('Enter username');
   var username = stdin.readLineSync();
   print('Enter password');
+  stdin.echoMode = false;
   var password = stdin.readLineSync();
+  stdin.echoMode = true;
+
   someAsyncFunction(username, password, uri);
 }
 
@@ -48,4 +51,7 @@ void someAsyncFunction(String username, String password, String uri) async {
   for (var subject in subjects) {
     print(subject);
   }
+
+  // Print serialized list of subjects
+  print(subjects.map((s) => s.toJson()));
 }
