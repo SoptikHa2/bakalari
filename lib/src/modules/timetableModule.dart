@@ -91,6 +91,7 @@ class TimetableModule {
 }
 
 /// This is timetable returned from school system.
+@JsonSerializable()
 class Timetable {
   /// Days in timetable (should be around 5), each
   /// has list of lessons
@@ -106,13 +107,26 @@ class Timetable {
 
   /// Name of current (week) cycle
   String currentCycleCaption;
+
+  Timetable(
+      {this.currentCycleCaption, this.currentCycleID, this.days, this.times});
+
+  factory Timetable.fromJson(Map<String, dynamic> json) =>
+      _$TimetableFromJson(json);
+  Map<String, dynamic> toJson() => _$TimetableToJson(this);
 }
 
 /// This is one day in timetable that encapsulates individual lessons
+@JsonSerializable()
 class Day {
   List<Lesson> lessons;
   DateTime date;
   String shortName;
+
+  Day({this.date, this.lessons, this.shortName});
+
+  factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
+  Map<String, dynamic> toJson() => _$DayToJson(this);
 }
 
 /// This is lesson - teacher, time, etc
@@ -182,8 +196,7 @@ class Lesson {
       this.lessonContent,
       this.lessonTime});
 
-  factory Lesson.fromJson(Map<String, dynamic> json) =>
-      _$LessonFromJson(json);
+  factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
   Map<String, dynamic> toJson() => _$LessonToJson(this);
 }
 

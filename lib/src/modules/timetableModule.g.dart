@@ -6,6 +6,44 @@ part of bakalari.modules.timetable;
 // JsonSerializableGenerator
 // **************************************************************************
 
+Timetable _$TimetableFromJson(Map<String, dynamic> json) {
+  return Timetable(
+      currentCycleCaption: json['currentCycleCaption'] as String,
+      currentCycleID: json['currentCycleID'] as String,
+      days: (json['days'] as List)
+          ?.map(
+              (e) => e == null ? null : Day.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
+      times: (json['times'] as List)
+          ?.map((e) =>
+              e == null ? null : LessonTime.fromJson(e as Map<String, dynamic>))
+          ?.toList());
+}
+
+Map<String, dynamic> _$TimetableToJson(Timetable instance) => <String, dynamic>{
+      'days': instance.days,
+      'times': instance.times,
+      'currentCycleID': instance.currentCycleID,
+      'currentCycleCaption': instance.currentCycleCaption
+    };
+
+Day _$DayFromJson(Map<String, dynamic> json) {
+  return Day(
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      lessons: (json['lessons'] as List)
+          ?.map((e) =>
+              e == null ? null : Lesson.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
+      shortName: json['shortName'] as String);
+}
+
+Map<String, dynamic> _$DayToJson(Day instance) => <String, dynamic>{
+      'lessons': instance.lessons,
+      'date': instance.date?.toIso8601String(),
+      'shortName': instance.shortName
+    };
+
 Lesson _$LessonFromJson(Map<String, dynamic> json) {
   return Lesson(
       type: json['type'] as String,
