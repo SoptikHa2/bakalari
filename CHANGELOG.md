@@ -1,3 +1,6 @@
+### Version 0.1.4
+Serialization hotfix
+
 ### Version 0.1.3
 Added serialization support ([json_serializable](https://pub.dartlang.org/packages/json_serializable))
 
