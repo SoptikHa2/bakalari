@@ -141,7 +141,34 @@ class Bakalari {
       throw UnsupportedError(
           "Module ${module.identifier} is not allowed by school system.");
 
-    return await module.getResult(_generateAuthToken(), _schoolAddress);
+    return await module.getResult(_generateAuthToken(), _schoolAddress,
+        source: TimetableSource.Today);
+  }
+
+  /// Get permanent timetable from school system.
+  /// Timetable has to be allowed by your school.
+  /// See `Timetable` class for more info about output.
+  Future<Timetable> getTimetablePermanent() async {
+    var module = TimetableModule();
+    if (!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError(
+          "Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress,
+        source: TimetableSource.Permanent);
+  }
+
+  /// Get timetable from some date from school system.
+  /// Timetable has to be allowed by your school.
+  /// See `Timetable` class for more info about output.
+  Future<Timetable> getTimetableByDate(DateTime date) async {
+    var module = TimetableModule();
+    if (!school.allowedModules.contains(module.identifier))
+      throw UnsupportedError(
+          "Module ${module.identifier} is not allowed by school system.");
+
+    return await module.getResult(_generateAuthToken(), _schoolAddress,
+        source: TimetableSource.ByDate, dateSource: date);
   }
 
   /// Get PMs sent to you this year from school system.

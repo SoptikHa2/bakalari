@@ -14,12 +14,23 @@ part 'timetableModule.g.dart';
 class TimetableModule {
   String identifier = "rozvrh";
 
-  Future<Timetable> getResult(String authKey, Uri schoolAddress) async {
+  /// Get timetable (if school supports the module)
+  /// 
+  /// You can optionally specify source - either `Today`, `Permanent`, or `ByDate`.
+  /// If you select `ByDate`, you have to specify `dateSource` (type DateTime).
+  Future<Timetable> getResult(String authKey, Uri schoolAddress, { TimetableSource source = TimetableSource.Today, DateTime dateSource = null }) async {
     var client = http.Client();
     http.Response response;
+
+    String source = "";
+    if(source == TimetableSource.Permanent)
+      source = "&pmd=perm";
+    else if(source == TimetableSource.ByDate)
+      source = "&pmd=${Helpers.dateTimeToBakawebDate(dateSource)}";
+
     try {
       response =
-          await client.get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey");
+          await client.get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + source);
     } finally {
       client.close();
     }
@@ -88,6 +99,12 @@ class TimetableModule {
 
     return timetable;
   }
+}
+
+enum TimetableSource{
+  Today,
+  Permanent,
+  ByDate
 }
 
 /// This is timetable returned from school system.

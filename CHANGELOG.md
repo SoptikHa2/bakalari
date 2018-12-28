@@ -1,3 +1,6 @@
+### Version 0.1.7
+Added option to specify timetable date
+
 ### Version 0.1.4, 0.1.5, 0.1.6
 Serialization hotfix
 

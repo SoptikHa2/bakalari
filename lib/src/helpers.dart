@@ -6,8 +6,6 @@ class Helpers {
   /// and return as Dart DateTime format.
   static DateTime bakawebDateTimeToDateTime(String date) {
     // I'll be VERY surprised if this code ever caeses to work because of the magic number '2000'.
-    // If it suddenly breakes, find me (or my family).
-    // I bet they'd be surprised to hear from someone because he used my library from year 2018. :)
     return DateTime(
         2000 + int.parse(date.substring(0, 2)),
         int.parse(date.substring(2, 4)),
@@ -25,5 +23,11 @@ class Helpers {
     // I bet they'd be surprised to hear from someone because he used my library from year 2018. :)
     return DateTime(int.parse(date.substring(0, 4)),
         int.parse(date.substring(4, 6)), int.parse(date.substring(6, 8)));
+  }
+
+  /// Convert date from DateTime class to
+  /// bakaweb format (like 20181210)
+  static String dateTimeToBakawebDate(DateTime date){
+    return "${date.year}${date.month}${date.day}";
   }
 }

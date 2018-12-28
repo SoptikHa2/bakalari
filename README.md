@@ -8,7 +8,7 @@ If you are coming from GitHub, the package can be found at [pub.dartlang.org](ht
 ## Install
 Open `pubspec.yaml` of your project and into dependencies, insert following line:
 ```
-bakalari: ^0.1.6
+bakalari: ^0.1.7
 ```
 Run `pub get` and it should install automagically.
 
