@@ -1,3 +1,6 @@
+### Version 0.1.9
+Timetable serialization hotfix
+
 ### Version 0.1.8
 Fixed permanent timetable. Each timetable may now contain more 
 lessons in one time-spot.

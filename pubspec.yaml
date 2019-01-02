@@ -1,5 +1,5 @@
 name: bakalari
-version: 0.1.8
+version: 0.1.9
 description: >-
         Wrapper for Czech school system Bakaláři. 
         Grants access to data that are not accessible

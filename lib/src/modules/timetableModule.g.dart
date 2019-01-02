@@ -38,7 +38,7 @@ Day _$DayFromJson(Map<String, dynamic> json) {
       shortName: json['shortName'] as String);
 }
 
-List<Lesson> _LessonsFromJson(List<Map<String, dynamic>> json){
+List<Lesson> _LessonsFromJson(List<dynamic> json){
   return json.map((j) => Lesson.fromJson(j)).toList();
 }
 
