@@ -1,3 +1,9 @@
+### Version 0.1.8
+Fixed permanent timetable. Each timetable may now contain more 
+lessons in one time-spot.
+
+Updated pointycastle package.
+
 ### Version 0.1.7
 Added option to specify timetable date
 

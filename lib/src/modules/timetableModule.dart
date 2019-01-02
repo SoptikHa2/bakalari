@@ -15,22 +15,24 @@ class TimetableModule {
   String identifier = "rozvrh";
 
   /// Get timetable (if school supports the module)
-  /// 
+  ///
   /// You can optionally specify source - either `Today`, `Permanent`, or `ByDate`.
   /// If you select `ByDate`, you have to specify `dateSource` (type DateTime).
-  Future<Timetable> getResult(String authKey, Uri schoolAddress, { TimetableSource source = TimetableSource.Today, DateTime dateSource = null }) async {
+  Future<Timetable> getResult(String authKey, Uri schoolAddress,
+      {TimetableSource source = TimetableSource.Today,
+      DateTime dateSource = null}) async {
     var client = http.Client();
     http.Response response;
 
     String strSource = "";
-    if(source == TimetableSource.Permanent)
+    if (source == TimetableSource.Permanent)
       strSource = "&pmd=perm";
-    else if(source == TimetableSource.ByDate)
+    else if (source == TimetableSource.ByDate)
       strSource = "&pmd=${Helpers.dateTimeToBakawebDate(dateSource)}";
 
     try {
-      response =
-          await client.get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + strSource);
+      response = await client
+          .get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + strSource);
     } finally {
       client.close();
     }
@@ -69,16 +71,18 @@ class TimetableModule {
         d.shortName = day.findElements('zkratka').first.text;
         d.date =
             Helpers.bakawebDateToDateTime(day.findElements('datum').first.text);
-        //d.lessons = List<Lesson>();
+        d.lessons = List<List<Lesson>>();
         int lessonNumberInDay = 0;
+        String lastLessonCaption = '0';
         for (var lesson in day.findAllElements('hod')) {
           var l = Lesson();
+          String lessonCaption = '';
           l.type = lesson.findElements('typ').first.text;
           l.lessonTime = timetable.times[lessonNumberInDay];
-          lessonNumberInDay++;
           // All following types are optional, so if something
           // bad happens, we can just ignore it
           try {
+            lessonCaption = lesson.findElements('caption').first.text;
             l.id = lesson.findElements('idcode').first.text;
             l.change = lesson.findElements('chng').first.text;
             l.classGroupLong = lesson.findElements('skup').first.text;
@@ -91,21 +95,27 @@ class TimetableModule {
             l.lessonContent = lesson.findElements('tema').first.text;
             l.isSet = true;
           } catch (e) {}
-          //d.lessons.add(l);
+
+          // If the lesson is type X, or the caption (in all cases I've seen so far: lesson number) is different,
+          // we can skip to another time cell in timetable
+          if (l.type == 'X' || lessonCaption != lastLessonCaption)
+            lessonNumberInDay++;
+          lastLessonCaption = lessonCaption;
+
+          if (lessonNumberInDay < d.lessons.length) {
+            d.lessons[lessonNumberInDay].add(l);
+          } else {
+            d.lessons.add([l]);
+          }
         }
         timetable.days.add(d);
       }
     }
-
     return timetable;
   }
 }
 
-enum TimetableSource{
-  Today,
-  Permanent,
-  ByDate
-}
+enum TimetableSource { Today, Permanent, ByDate }
 
 /// This is timetable returned from school system.
 @JsonSerializable()
