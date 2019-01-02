@@ -33,13 +33,17 @@ Day _$DayFromJson(Map<String, dynamic> json) {
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       lessons: (json['lessons'] as List)
           ?.map((e) =>
-              e == null ? null : Lesson.fromJson(e as Map<String, dynamic>))
+              e == null ? null : _LessonsFromJson(e))
           ?.toList(),
       shortName: json['shortName'] as String);
 }
 
+List<Lesson> _LessonsFromJson(List<Map<String, dynamic>> json){
+  return json.map((j) => Lesson.fromJson(j)).toList();
+}
+
 Map<String, dynamic> _$DayToJson(Day instance) => <String, dynamic>{
-      'lessons': instance.lessons?.map((m) => m.toJson())?.toList(),
+      'lessons': instance.lessons?.map((m) => m?.map((l) => l.toJson())?.toList())?.toList(),
       'date': instance.date?.toIso8601String(),
       'shortName': instance.shortName
     };
@@ -75,7 +79,7 @@ Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
       'change': instance.change,
       'classGroupLong': instance.classGroupLong,
       'classGroupShort': instance.classGroupShort,
-      'lessonTime': instance.lessonTime.toJson(),
+      'lessonTime': instance.lessonTime?.toJson(),
       'isSet': instance.isSet
     };
 

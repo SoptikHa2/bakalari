@@ -22,15 +22,15 @@ class TimetableModule {
     var client = http.Client();
     http.Response response;
 
-    String source = "";
+    String strSource = "";
     if(source == TimetableSource.Permanent)
-      source = "&pmd=perm";
+      strSource = "&pmd=perm";
     else if(source == TimetableSource.ByDate)
-      source = "&pmd=${Helpers.dateTimeToBakawebDate(dateSource)}";
+      strSource = "&pmd=${Helpers.dateTimeToBakawebDate(dateSource)}";
 
     try {
       response =
-          await client.get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + source);
+          await client.get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + strSource);
     } finally {
       client.close();
     }
@@ -69,7 +69,7 @@ class TimetableModule {
         d.shortName = day.findElements('zkratka').first.text;
         d.date =
             Helpers.bakawebDateToDateTime(day.findElements('datum').first.text);
-        d.lessons = List<Lesson>();
+        //d.lessons = List<Lesson>();
         int lessonNumberInDay = 0;
         for (var lesson in day.findAllElements('hod')) {
           var l = Lesson();
@@ -91,7 +91,7 @@ class TimetableModule {
             l.lessonContent = lesson.findElements('tema').first.text;
             l.isSet = true;
           } catch (e) {}
-          d.lessons.add(l);
+          //d.lessons.add(l);
         }
         timetable.days.add(d);
       }
@@ -136,7 +136,11 @@ class Timetable {
 /// This is one day in timetable that encapsulates individual lessons
 @JsonSerializable()
 class Day {
-  List<Lesson> lessons;
+  /// This contains list of lessons. Most of the time,
+  /// the inner list consists of only one lesson. But for example in most
+  /// permanent timetables, more differenet lessons can occur at the same
+  /// time. In which case, the inner list will contain more lessons.
+  List<List<Lesson>> lessons;
   DateTime date;
   String shortName;
 
