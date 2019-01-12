@@ -29,7 +29,3 @@ If you run into problems, [create GitHub issue](https://github.com/SoptikHa2/bak
 
 - [pybakalib](https://github.com/vakabus/pybakalib/) is python library that powers the alternative Bakaweb website, [Bakaweb.tk](https://www.bakaweb.tk/).
 - [bakalari-api](https://github.com/bakalari-api/bakalari-api) is unofficial documentation of Bakaweb API. Apart from documentation, this organization provides some unofficial apps that use the Bakaweb API.
-
-# Contact me
-
-[@soptik@fosstodon.org](https://fosstodon.org/@soptik)
