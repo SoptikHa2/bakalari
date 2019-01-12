@@ -1,6 +1,8 @@
 import 'package:bakalari/bakalari.dart';
 import 'dart:io';
 
+import 'package:bakalari/src/modules/timetableModule.dart';
+
 main(List<String> args) {
   print('Dart example of \'bakalari\' library has loaded.');
   print(
@@ -20,7 +22,6 @@ main(List<String> args) {
 void someAsyncFunction(String username, String password, String uri) async {
   var bkw = Bakalari(Uri.parse(uri));
   await bkw.logIn(username, password);
-
   print(
       'Welcome, student ${bkw.student.name}, class ${bkw.student.schoolClass} (year: ${bkw.student.year})! '
       'This library has successfully connected to ${bkw.school.name} (${bkw.school.bakawebVersion}). '
@@ -32,6 +33,7 @@ void someAsyncFunction(String username, String password, String uri) async {
   }
 
   var timetable = await bkw.getTimetable();
+  var permTimetable = await bkw.getTimetablePermanent();
   print('Timetable is done!');
   print(
       'Use debug mode to inspect it, I didn\'t write toString method because of it\'s complexity.');
