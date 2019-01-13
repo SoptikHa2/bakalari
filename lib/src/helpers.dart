@@ -19,7 +19,7 @@ class Helpers {
   /// and return as Dart DateTime format.
   static DateTime bakawebDateToDateTime(String date) {
     // I'll be VERY surprised if this code ever caeses to work because of the magic number '2000'.
-    if(date == ''){
+    if (date == '') {
       // Permanent timetable, so there's no date
       return null;
     }
@@ -29,7 +29,7 @@ class Helpers {
 
   /// Convert date from DateTime class to
   /// bakaweb format (like 20181210)
-  static String dateTimeToBakawebDate(DateTime date){
-    return "${date.year}${date.month}${date.day}";
+  static String dateTimeToBakawebDate(DateTime date) {
+    return "${date.year}${date.month.toString().padLeft(2, '0')}${date.day.toString().padLeft(2, '0')}";
   }
 }

@@ -1,3 +1,9 @@
+### Version 0.2.1
+Library now internally fetches timetable for the next week if it's weekend - so for example, on Saturday, week 1, you'll already see timetable for week 2.
+
+### Version 0.2.0
+Minor fix
+
 ### Version 0.1.9
 Timetable serialization hotfix
 
