@@ -9,14 +9,14 @@ import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 part 'homeworkModule.g.dart';
 
-/// This module takes care of getting homeworks from school system.
+/// This module takes care of getting homework from school system.
 /// See `Homework` for structure of returned object.
 class HomeworkModule {
   /// Identifier inside the school system
   String identifier = "ukoly";
 
   /// Somewhen in the future, return list
-  /// of homeworks. This may throw an error if
+  /// of homework. This may throw an error if
   /// unsuccessful.
   Future<List<Homework>> getResult(String authKey, Uri schoolAddress) async {
     var client = http.Client();

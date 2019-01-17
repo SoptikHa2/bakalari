@@ -98,26 +98,31 @@ class Bakalari {
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
     var xmlPayload = xml.parse(response.body);
 
-    _school = new School();
-    _school.name = xmlPayload.findAllElements('skola').first.text;
-    _school.bakawebVersion = xmlPayload.findAllElements('verze').first.text;
-    _school.bakawebLink = _schoolAddress;
-    _school.allowedModules = xmlPayload
-        .findAllElements('moduly')
-        .first
-        .text
-        .split('*')
-        .where((item) => item.isNotEmpty)
-        .toList();
+    try {
+      _school = new School();
+      _school.name = xmlPayload.findAllElements('skola').first.text;
+      _school.bakawebVersion = xmlPayload.findAllElements('verze').first.text;
+      _school.bakawebLink = _schoolAddress;
+      _school.allowedModules = xmlPayload
+          .findAllElements('moduly')
+          .first
+          .text
+          .split('*')
+          .where((item) => item.isNotEmpty)
+          .toList();
 
-    _student = new Student();
-    _student.name = xmlPayload.findAllElements('jmeno').first.text;
-    _student.schoolClass = xmlPayload.findAllElements('trida').first.text;
-    _student.year = int.parse(xmlPayload.findAllElements('rocnik').first.text);
+      _student = new Student();
+      _student.name = xmlPayload.findAllElements('jmeno').first.text;
+      _student.schoolClass = xmlPayload.findAllElements('trida').first.text;
+      _student.year =
+          int.parse(xmlPayload.findAllElements('rocnik').first.text);
+    } catch (e) {
+      throw BadResponseError('Unexpected response while logging in: ${response.body}', StackTrace.current);
+    }
   }
 
   /// Get grades from school system.
@@ -137,10 +142,10 @@ class Bakalari {
   /// See `Timetable` class for more info about output.
   Future<Timetable> getTimetable() async {
     var now = DateTime.now();
-    if(now.weekday == DateTime.saturday){
+    if (now.weekday == DateTime.saturday) {
       return await getTimetableByDate(now.add(Duration(days: 2)));
     }
-    if(now.weekday == DateTime.sunday){
+    if (now.weekday == DateTime.sunday) {
       return await getTimetableByDate(now.add(Duration(days: 1)));
     }
 
@@ -195,10 +200,10 @@ class Bakalari {
     return await module.getResult(_generateAuthToken(), _schoolAddress);
   }
 
-  /// Get homeworks from school system.
-  /// Homeworks has to be allowed by your school.
+  /// Get homework from school system.
+  /// Homework has to be allowed by your school.
   /// See `Homework` class for more info about output.
-  Future<List<Homework>> getHomeworks() async {
+  Future<List<Homework>> getHomework() async {
     var module = HomeworkModule();
     if (!school.allowedModules.contains(module.identifier))
       throw UnsupportedError(

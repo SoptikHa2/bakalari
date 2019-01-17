@@ -1,3 +1,6 @@
+### Version 0.2.2
+Fixed spelling. Login failure will throw useful explanation.
+
 ### Version 0.2.1
 Library now internally fetches timetable for the next week if it's weekend - so for example, on Saturday, week 1, you'll already see timetable for week 2.
 
