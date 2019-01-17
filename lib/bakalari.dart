@@ -212,6 +212,16 @@ class Bakalari {
     return await module.getResult(_generateAuthToken(), _schoolAddress);
   }
 
+  @deprecated
+  /// This is old version of function that gets homework from school system.
+  /// This was deprecated because of spelling mistake.
+  /// 
+  /// Do NOT use this, as it'll be removed in next release.
+  /// Use `getHomework()` (with no `s` at the end) instead.
+  /// 
+  /// Both old and new version work exactly the same.
+  Future<List<Homework>> getHomeworks() async => getHomework();
+
   /// Get list of subjects from school system.
   /// Subject list has to be allowed by your school.
   /// See `Subject` class for more info about output.

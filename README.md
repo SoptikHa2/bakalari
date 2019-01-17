@@ -3,7 +3,7 @@ Bakaláři is Dart library that can be used for accessing Bakaweb API. Bakalář
 
 This library is directly based on [vakabus/pybakalib](https://github.com/vakabus/pybakalib/).
 
-If you are coming from GitHub, the package can be found at [pub.dartlang.org](https://pub.dartlang.org/packages/bakalari).
+If you are at GitHub, the package can be found at [pub.dartlang.org](https://pub.dartlang.org/packages/bakalari).
 
 ## Install
 Open `pubspec.yaml` of your project and insert following line into dependencies section:

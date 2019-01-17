@@ -44,7 +44,7 @@ void someAsyncFunction(String username, String password, String uri) async {
     print(message);
   }
 
-  var hws = await bkw.getHomeworks();
+  var hws = await bkw.getHomework();
   for (var hw in hws) {
     print(hw);
   }
