@@ -1,8 +1,6 @@
 import 'package:bakalari/bakalari.dart';
 import 'dart:io';
 
-import 'package:bakalari/src/modules/timetableModule.dart';
-
 main(List<String> args) {
   print('Dart example of \'bakalari\' library has loaded.');
   print(
