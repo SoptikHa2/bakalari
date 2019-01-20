@@ -1,3 +1,6 @@
+### Version 0.2.3
+Updated dependencies and removed obsolate method.
+
 ### Version 0.2.2
 Fixed spelling. Login failure will throw useful explanation.
 
