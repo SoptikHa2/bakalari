@@ -1,5 +1,5 @@
 name: bakalari
-version: 0.2.2
+version: 0.2.3
 description: >-
         Wrapper for Czech school system Bakaláři. 
         Grants access to data that are not accessible
@@ -9,12 +9,12 @@ homepage: https://github.com/SoptikHa2/bakalari
 environment:
         sdk: '>=2.1.0 <3.0.0'
 dependencies:
-        http: ^0.12.0
-        xml: ^3.2.3
-        intl: ^0.15.7
-        pointycastle: ^1.0.0
-        json_annotation: ^2.0.0
+        http: ^0.12.0+1 # Needed for requests to API
+        xml: ^3.2.5 # Needed for parsing responses from API
+        intl: ^0.15.7 # Needed for date formatting
+        pointycastle: ^1.0.0 # This is crypto library, needed for generating password hashes
+        json_annotation: ^2.0.0 # Somehow needed for json (de)serialization
 
 dev_dependencies:
         json_serializable: ^2.0.1
-        build_runner: ^1.1.2
+        build_runner: ^1.1.3
