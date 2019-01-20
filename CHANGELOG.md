@@ -1,6 +1,13 @@
 ### Version 0.2.3
 Updated dependencies and removed obsolate method.
 
+Library now tries to fix provided school URI itself.
+It takes the domain and converts it to `https://example.com/login.aspx`.
+Scheme is forced as https.
+
+Let me know if there are any issues with this, and I'll add option to override it
+or change the URI fix.
+
 ### Version 0.2.2
 Fixed spelling. Login failure will throw useful explanation.
 
