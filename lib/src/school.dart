@@ -6,7 +6,7 @@ part 'school.g.dart';
 @JsonSerializable()
 class School {
   /// Link to school's bakaweb login page
-  Uri bakawebLink;
+  String bakawebLink;
 
   /// Name of school. This often contains school address.
   String name;

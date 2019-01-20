@@ -18,7 +18,7 @@ class TimetableModule {
   ///
   /// You can optionally specify source - either `Today`, `Permanent`, or `ByDate`.
   /// If you select `ByDate`, you have to specify `dateSource` (type DateTime).
-  Future<Timetable> getResult(String authKey, Uri schoolAddress,
+  Future<Timetable> getResult(String authKey, String schoolAddress,
       {TimetableSource source = TimetableSource.Today,
       DateTime dateSource = null}) async {
     var client = http.Client();
@@ -32,14 +32,14 @@ class TimetableModule {
 
     try {
       response = await client
-          .get(schoolAddress.toString() + "?pm=rozvrh&hx=$authKey" + strSource);
+          .get(schoolAddress + "?pm=rozvrh&hx=$authKey" + strSource);
     } finally {
       client.close();
     }
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var timetable = Timetable();

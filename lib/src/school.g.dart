@@ -8,9 +8,7 @@ part of bakalari.core.school;
 
 School _$SchoolFromJson(Map<String, dynamic> json) {
   return School(
-      bakawebLink: json['bakawebLink'] == null
-          ? null
-          : Uri.parse(json['bakawebLink'] as String),
+      bakawebLink: json['bakawebLink'] as String,
       name: json['name'] as String,
       bakawebVersion: json['bakawebVersion'] as String,
       allowedModules:

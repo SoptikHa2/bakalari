@@ -20,21 +20,21 @@ class GradeModule {
   /// Somewhen in the future, return list
   /// of grades. This may throw an error if
   /// unsuccessful.
-  Future<List<Grade>> getResult(String authKey, Uri schoolAddress) async {
+  Future<List<Grade>> getResult(String authKey, String schoolAddress) async {
     if (weightsMap == null) await _loadWeightsMap(authKey, schoolAddress);
 
     var client = http.Client();
     http.Response response;
     try {
       response =
-          await client.get(schoolAddress.toString() + "?pm=znamky&hx=$authKey");
+          await client.get(schoolAddress + "?pm=znamky&hx=$authKey");
     } finally {
       client.close();
     }
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var grades = List<Grade>();
@@ -69,19 +69,19 @@ class GradeModule {
   /// You shouldn't ever need to call this manually,
   /// as this is called silently at every new instance
   /// creation of this module.
-  Future<void> _loadWeightsMap(String authKey, Uri schoolAddress) async {
+  Future<void> _loadWeightsMap(String authKey, String schoolAddress) async {
     var client = http.Client();
     http.Response response;
     try {
       response = await client
-          .get(schoolAddress.toString() + "?pm=predvidac&hx=$authKey");
+          .get(schoolAddress + "?pm=predvidac&hx=$authKey");
     } finally {
       client.close();
     }
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var result = Map<String, int>();

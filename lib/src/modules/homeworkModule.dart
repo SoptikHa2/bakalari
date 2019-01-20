@@ -18,19 +18,19 @@ class HomeworkModule {
   /// Somewhen in the future, return list
   /// of homework. This may throw an error if
   /// unsuccessful.
-  Future<List<Homework>> getResult(String authKey, Uri schoolAddress) async {
+  Future<List<Homework>> getResult(String authKey, String schoolAddress) async {
     var client = http.Client();
     http.Response response;
     try {
       response =
-          await client.get(schoolAddress.toString() + "?pm=ukoly&hx=$authKey");
+          await client.get(schoolAddress + "?pm=ukoly&hx=$authKey");
     } finally {
       client.close();
     }
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var result = List<Homework>();

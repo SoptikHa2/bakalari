@@ -32,4 +32,44 @@ class Helpers {
   static String dateTimeToBakawebDate(DateTime date) {
     return "${date.year}${date.month.toString().padLeft(2, '0')}${date.day.toString().padLeft(2, '0')}";
   }
+
+  /// Convert invalid bakaweb url to
+  /// valid one.
+  ///
+  /// **Invalid scheme:**
+  /// - bakalari.ceskolipska.cz
+  /// - http://bakalari.ceskolipska.cz
+  /// - www.bakalari.ceskolipska.cz
+  ///
+  /// **Valid scheme:**
+  /// - https://bakalari.ceskolipska.cz
+  ///
+  /// **Invalid login path:**
+  /// - /
+  /// - /next/
+  /// - /next/login.aspx
+  /// - ...
+  ///
+  /// **Valid login path:**
+  /// - /login.aspx
+  static String repairBakawebUri(String uri) {
+    // Remove scheme
+    uri = uri
+        .replaceFirst('http://', '')
+        .replaceFirst('https://', '')
+        .replaceFirst('www.', '');
+
+    // Remove everything after domain
+    int indexOfFirstSlash = uri.indexOf('/');
+    if (indexOfFirstSlash != -1) uri = uri.substring(0, indexOfFirstSlash);
+
+    int indexOfQueryString = uri.indexOf('?');
+    if(indexOfQueryString != -1) uri = uri.substring(0, indexOfQueryString);
+
+    // Append https:// and /login.aspx
+    uri = "https://" + uri + "/login.aspx";
+
+    // Return finished uri
+    return uri;
+  }
 }

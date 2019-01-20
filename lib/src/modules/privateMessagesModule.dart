@@ -19,19 +19,19 @@ class PrivateMessagesModule {
   /// of grades. This may throw an error if
   /// unsuccessful.
   Future<List<PrivateMessage>> getResult(
-      String authKey, Uri schoolAddress) async {
+      String authKey, String schoolAddress) async {
     var client = http.Client();
     http.Response response;
     try {
       response = await client
-          .get(schoolAddress.toString() + "?pm=prijate&hx=$authKey");
+          .get(schoolAddress + "?pm=prijate&hx=$authKey");
     } finally {
       client.close();
     }
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var pms = List<PrivateMessage>();
