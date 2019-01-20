@@ -142,11 +142,8 @@ class Bakalari {
   /// See `Timetable` class for more info about output.
   Future<Timetable> getTimetable() async {
     var now = DateTime.now();
-    if (now.weekday == DateTime.saturday) {
-      return await getTimetableByDate(now.add(Duration(days: 2)));
-    }
-    if (now.weekday == DateTime.sunday) {
-      return await getTimetableByDate(now.add(Duration(days: 1)));
+    if (now.weekday >= DateTime.saturday) {
+      return await getNextWeekTimetable();
     }
 
     var module = TimetableModule();
@@ -156,6 +153,18 @@ class Bakalari {
 
     return await module.getResult(_generateAuthToken(), _schoolAddress,
         source: TimetableSource.Today);
+  }
+
+  /// Get next week timetable from school system.
+  /// Timetable has to be allowed by your school.
+  /// See `Timetable` class for more info about output.
+  Future<Timetable> getNextWeekTimetable() async {
+    var now = DateTime.now();
+
+    int currentDayInWeek = now.weekday;
+    int daysTillNextMonday = 8 - currentDayInWeek;
+
+    return getTimetableByDate(now.add(Duration(days: daysTillNextMonday)));
   }
 
   /// Get permanent timetable from school system.
