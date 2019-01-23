@@ -76,7 +76,7 @@ class Bakalari {
 
     if (response.statusCode != 200) {
       throw BadResponseError(
-          "Unexpected status code $response", StackTrace.current);
+          "Unexpected status code ${response.statusCode}", StackTrace.current);
     }
 
     var xmlPayload = xml.parse(response.body);
