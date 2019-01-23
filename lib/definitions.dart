@@ -17,8 +17,13 @@ class Grade {
   /// Short subject name (`M`, not `Math`)
   String subject;
 
-  /// Value of the grade (1-5, 1 is best)
-  double value;
+  /// Value of the grade (usually 0-5). Please note that there might be other values here as well - for example
+  /// `X`, or `1!`. In case here's just a number, you can find it in number format in `numericValue` field.
+  String value;
+
+  /// Value of the grade. Be careful, this will be null if the value of the grade as received from the server
+  /// (see `value`) is not numeric - for example `X` or `1!`.
+  double numericValue;
 
   /// Date when the grade was written
   DateTime date;
@@ -32,12 +37,12 @@ class Grade {
   /// Weight of the grade
   int weight;
 
-  Grade({this.caption, this.date, this.note, this.subject, this.value, this.weight});
+  Grade({this.caption, this.date, this.note, this.subject, this.value, this.numericValue, this.weight});
 
   /// Create new grade.
   ///
   /// Bakaweb date format is in format `yyMMddHHmm`.
-  Grade.fromBakawebDate(this.subject, this.value, String bakawebDateFormat, this.caption,
+  Grade.fromBakawebDate(this.subject, this.value, this.numericValue, String bakawebDateFormat, this.caption,
       this.note, this.weight) {
     this.date = Helpers.bakawebDateTimeToDateTime(bakawebDateFormat);
   }

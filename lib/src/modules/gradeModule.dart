@@ -1,6 +1,5 @@
 library bakalari.modules.grade;
 
-import 'package:bakalari/src/badResponseError.dart';
 import 'package:bakalari/definitions.dart';
 
 import 'package:xml/xml.dart' as xml;
@@ -50,10 +49,9 @@ class GradeModule {
 
         bool addHalfToGradeValue = gradeValue.endsWith('-');
         var gradeValueNum = double.tryParse(gradeValue.replaceAll('-', ''));
-        if (gradeValueNum == null) continue;
-        if (addHalfToGradeValue) gradeValueNum += 0.5;
+        if (addHalfToGradeValue && gradeValueNum != null) gradeValueNum += 0.5;
 
-        grades.add(Grade.fromBakawebDate(subject, gradeValueNum, date, caption, note, weight));
+        grades.add(Grade.fromBakawebDate(subject, gradeValue, gradeValueNum, date, caption, note, weight));
       }
     }
 

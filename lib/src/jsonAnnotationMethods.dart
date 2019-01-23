@@ -7,13 +7,15 @@ Grade _$GradeFromJson(Map<String, dynamic> json) {
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       note: json['note'] as String,
       subject: json['subject'] as String,
-      value: (json['value'] as num)?.toDouble(),
+      numericValue: (json['numericValue'] as num)?.toDouble(),
+      value:  json['value'] as String,
       weight: json['weight'] as int);
 }
 
 Map<String, dynamic> _$GradeToJson(Grade instance) => <String, dynamic>{
       'subject': instance.subject,
       'value': instance.value,
+      'numericValue': instance.numericValue,
       'date': instance.date?.toIso8601String(),
       'caption': instance.caption,
       'note': instance.note,
