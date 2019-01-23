@@ -1,7 +1,6 @@
 library bakalari.modules.privateMessages;
 
 import 'package:bakalari/definitions.dart';
-import 'package:bakalari/src/helpers.dart';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;

@@ -4,7 +4,6 @@
 library bakalari.definitions;
 
 import 'package:bakalari/src/helpers.dart';
-import 'package:bakalari/src/modules/timetableModule.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'src/jsonAnnotationMethods.dart';
 
