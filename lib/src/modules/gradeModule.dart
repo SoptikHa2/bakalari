@@ -1,13 +1,10 @@
 library bakalari.modules.grade;
 
 import 'package:bakalari/src/badResponseError.dart';
-import 'package:bakalari/src/helpers.dart';
+import 'package:bakalari/definitions.dart';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
-
-import 'package:json_annotation/json_annotation.dart';
-part 'gradeModule.g.dart';
 
 /// This module takes care of getting grades from school system.
 /// When enabled, this can get even data that is inaccessible via
@@ -94,45 +91,5 @@ class GradeModule {
       }
     }
     weightsMap = result;
-  }
-}
-
-@JsonSerializable()
-class Grade {
-  /// Short subject name (`M`, not `Math`)
-  String subject;
-
-  /// Value of the grade (1-5, 1 is best)
-  double value;
-
-  /// Date when the grade was written
-  DateTime date;
-
-  /// Why did user get this grade
-  String caption;
-
-  /// Note from teacher
-  String note;
-
-  /// Weight of the grade
-  int weight;
-
-  Grade({this.caption, this.date, this.note, this.subject, this.value, this.weight});
-
-  /// Create new grade.
-  ///
-  /// Bakaweb date format is in format `yyMMddHHmm`.
-  Grade.fromBakawebDate(this.subject, this.value, String bakawebDateFormat, this.caption,
-      this.note, this.weight) {
-    this.date = Helpers.bakawebDateTimeToDateTime(bakawebDateFormat);
-  }
-
-  factory Grade.fromJson(Map<String, dynamic> json) =>
-      _$GradeFromJson(json);
-  Map<String, dynamic> toJson() => _$GradeToJson(this);
-
-  @override
-  String toString() {
-    return "Grade: $value with weight $weight from $subject, received at $date with title $caption and note $note.";
   }
 }

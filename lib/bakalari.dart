@@ -5,7 +5,7 @@
 /// all grades weights.
 library bakalari;
 
-import 'package:bakalari/src/badResponseError.dart';
+import 'package:bakalari/definitions.dart';
 import 'package:bakalari/src/helpers.dart';
 import 'package:bakalari/src/student.dart';
 import 'package:bakalari/src/school.dart';

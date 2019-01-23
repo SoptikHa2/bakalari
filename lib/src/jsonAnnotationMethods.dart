@@ -1,10 +1,93 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
+part of bakalari.definitions;
 
-part of bakalari.modules.timetable;
+Grade _$GradeFromJson(Map<String, dynamic> json) {
+  return Grade(
+      caption: json['caption'] as String,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      note: json['note'] as String,
+      subject: json['subject'] as String,
+      value: (json['value'] as num)?.toDouble(),
+      weight: json['weight'] as int);
+}
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
+Map<String, dynamic> _$GradeToJson(Grade instance) => <String, dynamic>{
+      'subject': instance.subject,
+      'value': instance.value,
+      'date': instance.date?.toIso8601String(),
+      'caption': instance.caption,
+      'note': instance.note,
+      'weight': instance.weight
+    };
+
+
+Homework _$HomeworkFromJson(Map<String, dynamic> json) {
+  return Homework(
+      subjectLong: json['subjectLong'] as String,
+      id: json['id'] as String,
+      subjectShort: json['subjectShort'] as String,
+      from:
+          json['from'] == null ? null : DateTime.parse(json['from'] as String),
+      status: json['status'] as String,
+      title: json['title'] as String,
+      to: json['to'] == null ? null : DateTime.parse(json['to'] as String));
+}
+
+Map<String, dynamic> _$HomeworkToJson(Homework instance) => <String, dynamic>{
+      'subjectLong': instance.subjectLong,
+      'subjectShort': instance.subjectShort,
+      'from': instance.from?.toIso8601String(),
+      'to': instance.to?.toIso8601String(),
+      'id': instance.id,
+      'status': instance.status,
+      'title': instance.title
+    };
+
+
+
+PrivateMessage _$PrivateMessageFromJson(Map<String, dynamic> json) {
+  return PrivateMessage(
+      id: json['id'] as String,
+      content: json['content'] as String,
+      title: json['title'] as String,
+      senderName: json['senderName'] as String,
+      type: json['type'] as String,
+      dateTime: json['dateTime'] == null
+          ? null
+          : DateTime.parse(json['dateTime'] as String));
+}
+
+Map<String, dynamic> _$PrivateMessageToJson(PrivateMessage instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'content': instance.content,
+      'title': instance.title,
+      'senderName': instance.senderName,
+      'dateTime': instance.dateTime?.toIso8601String(),
+      'type': instance.type
+    };
+
+
+Subject _$SubjectFromJson(Map<String, dynamic> json) {
+  return Subject(
+      subjectId: json['subjectId'] as String,
+      subjectLong: json['subjectLong'] as String,
+      subjectShort: json['subjectShort'] as String,
+      teacherEmail: json['teacherEmail'] as String,
+      teacherName: json['teacherName'] as String,
+      teacherPhone: json['teacherPhone'] as String,
+      teacherShort: json['teacherShort'] as String);
+}
+
+Map<String, dynamic> _$SubjectToJson(Subject instance) => <String, dynamic>{
+      'subjectLong': instance.subjectLong,
+      'subjectShort': instance.subjectShort,
+      'subjectId': instance.subjectId,
+      'teacherName': instance.teacherName,
+      'teacherShort': instance.teacherShort,
+      'teacherEmail': instance.teacherEmail,
+      'teacherPhone': instance.teacherPhone
+    };
 
 Timetable _$TimetableFromJson(Map<String, dynamic> json) {
   return Timetable(

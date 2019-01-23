@@ -1,12 +1,9 @@
 library bakalari.modules.subjectList;
 
-import 'package:bakalari/src/badResponseError.dart';
+import 'package:bakalari/definitions.dart';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
-
-import 'package:json_annotation/json_annotation.dart';
-part 'subjectListModule.g.dart';
 
 /// This module takes care of getting homeworks from school system.
 /// See `Subject` for structure of returned object.
@@ -49,44 +46,5 @@ class SubjectListModule {
     }
 
     return result;
-  }
-}
-
-@JsonSerializable()
-class Subject {
-  /// Long subject name (`Math`)
-  String subjectLong;
-
-  /// Short subject name (`M`)
-  String subjectShort;
-
-  String subjectId;
-
-  String teacherName;
-
-  /// Short teacher identifier (typically three letters of teacher's surname)
-  String teacherShort;
-
-  String teacherEmail;
-
-  /// In-school teacher phone number
-  String teacherPhone;
-
-  Subject(
-      {this.subjectId,
-      this.subjectLong,
-      this.subjectShort,
-      this.teacherEmail,
-      this.teacherName,
-      this.teacherPhone,
-      this.teacherShort});
-
-  factory Subject.fromJson(Map<String, dynamic> json) =>
-      _$SubjectFromJson(json);
-  Map<String, dynamic> toJson() => _$SubjectToJson(this);
-
-  @override
-  String toString() {
-    return '[$subjectShort:$teacherShort] - $teacherName ($teacherEmail)';
   }
 }

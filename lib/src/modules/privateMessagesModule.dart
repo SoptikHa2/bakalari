@@ -1,13 +1,11 @@
 library bakalari.modules.privateMessages;
 
-import 'package:bakalari/src/badResponseError.dart';
+import 'package:bakalari/definitions.dart';
 import 'package:bakalari/src/helpers.dart';
 
 import 'package:xml/xml.dart' as xml;
 import 'package:http/http.dart' as http;
 
-import 'package:json_annotation/json_annotation.dart';
-part 'privateMessagesModule.g.dart';
 
 /// This module takes care of getting PMs from school system.
 /// See `PrivateMessage` for structure of returned object.
@@ -52,64 +50,5 @@ class PrivateMessagesModule {
     }
 
     return pms;
-  }
-}
-
-/// Private message sent to user.
-///
-/// **WARNING:** Potential XSS vulnerability.
-/// Content of the message is *unescaped* HTML.
-/// Always be careful about whatever you do
-/// with this.
-@JsonSerializable()
-class PrivateMessage {
-  /// Id of the private message
-  String id;
-
-  /// # Potential vulnerability
-  ///
-  /// Content of private message.
-  ///
-  /// WARNING: UNESCAPED HTML
-  ///
-  /// WARNING: POTENTIAL XSS VULNERABILITY
-  ///
-  /// **ALWAYS** be careful about whatever you do
-  /// with this.
-  String content;
-
-  /// Title of the message. It's empty most of the time,
-  /// if not always. Do not rely on this.
-  String title;
-
-  /// Name of sender
-  String senderName;
-
-  /// DateTime sent
-  DateTime dateTime;
-
-  /// Type of message
-  String type;
-
-  PrivateMessage(
-      {this.id,
-      this.content,
-      this.title,
-      this.senderName,
-      this.type,
-      this.dateTime});
-
-  PrivateMessage.fromBakawebDateTime(this.id, this.content, this.title,
-      this.senderName, this.type, String dateTime) {
-    this.dateTime = Helpers.bakawebDateTimeToDateTime(dateTime);
-  }
-
-  factory PrivateMessage.fromJson(Map<String, dynamic> json) =>
-      _$PrivateMessageFromJson(json);
-  Map<String, dynamic> toJson() => _$PrivateMessageToJson(this);
-
-  @override
-  String toString() {
-    return 'Received a message from $senderName at $dateTime, here\'s the content: $content';
   }
 }
