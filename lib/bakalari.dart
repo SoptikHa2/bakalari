@@ -54,12 +54,8 @@ class Bakalari {
   /// Bakalari constructor.
   /// Address of school system Bakalari is required.
   /// 
-  /// The address is fixed by the library, something like `bakalari.ceskolipska.cz` is enough.
-  /// 
   /// Do not forget to log in! See `Bakalari.logIn()`.
-  Bakalari(String schoolAddress){
-    _schoolAddress = Helpers.repairBakawebUri(schoolAddress);
-  }
+  Bakalari(this._schoolAddress);
 
   /// Log into Bakalari school system.
   /// After this has successfully completed, you can call other methods.
