@@ -11,6 +11,7 @@ import 'package:bakalari/src/modules/timetableModule.dart';
 import 'package:bakalari/src/modules/privateMessagesModule.dart';
 import 'package:bakalari/src/modules/homeworkModule.dart';
 import 'package:bakalari/src/modules/subjectListModule.dart';
+import 'package:bakalari/src/listOfSchools.dart';
 
 import 'dart:convert';
 
@@ -238,7 +239,17 @@ class Bakalari {
   /// Then let user choose one of the schools. These schools in the list
   /// have bakaweb URI included.
   static Future<List<String>> getListOfCities() async {
+    return await ListOfSchools.getListOfCities();
+  }
 
+  /// Get list of schools in one city that uses Bakalari system.
+  /// 
+  /// This will include school name and school bakaweb URL only.
+  /// The bakaweb URL is expected to be passed into constructor of this class.
+  /// 
+  /// You can get list of citites from `getListOfCitites()`.
+  static Future<List<School>> getListOfSchools(String city) async {
+    return await ListOfSchools.getSchoolsInCity(city);
   }
 
   /// This generates long-term key. Key generated from this method
