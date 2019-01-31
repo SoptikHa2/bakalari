@@ -52,6 +52,7 @@ class ListOfSchools {
       var sch = School();
       sch.name = school.findElements('name').first.text;
       sch.bakawebLink = school.findAllElements('schoolUrl').first.text;
+      schools.add(sch);
     }
 
     return schools;
