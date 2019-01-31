@@ -8,7 +8,7 @@ If you are at GitHub, the package can be found at [pub.dartlang.org](https://pub
 ## Install
 Open `pubspec.yaml` of your project and insert following line into dependencies section:
 ```
-bakalari: ^0.2.3
+bakalari: ^0.3.0
 ```
 Run `pub get` and it should install automatically.
 
@@ -20,6 +20,8 @@ import 'package:bakalari/bakalari.dart';
 
 Create some async method. Instantiate `Bakalari` class and **don't forget to log in** (`.logIn()`).
 Now, you can call methods like `.getGrades()` on the instance.
+
+There are two static methods that can be called without instantiating the library: `getListOfCitites` which returns list of cities in which is at least one school using the Bakaláři system, and `getListOfSchools`, which returns list of schools using the Bakáláři system in a city.
 
 See [example/main.dart](https://github.com/SoptikHa2/bakalari/blob/master/example/main.dart) for example code.
 

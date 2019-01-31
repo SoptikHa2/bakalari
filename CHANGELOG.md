@@ -1,3 +1,14 @@
+## Version 0.3.0
+Moved all class definitions into `lib/definitions.dart`, so it can be
+easily imported and used.
+
+Removed school URI fix, as it broke more things than solved - schools do not have
+any uniform bakaweb address style. Thankfully, there is API endpoint
+that can be used to find corresponding school address.
+
+So now, you can use this library to get list of citites and schools in these cities - much like in
+the Bakalari smartphone app.
+
 ### Version 0.2.3
 Updated dependencies and removed obsolate method.
 
