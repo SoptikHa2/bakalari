@@ -8,7 +8,7 @@ Grade _$GradeFromJson(Map<String, dynamic> json) {
       note: json['note'] as String,
       subject: json['subject'] as String,
       numericValue: (json['numericValue'] as num)?.toDouble(),
-      value:  json['value'] as String,
+      value: json['value'] as String,
       weight: json['weight'] as int);
 }
 
@@ -21,7 +21,6 @@ Map<String, dynamic> _$GradeToJson(Grade instance) => <String, dynamic>{
       'note': instance.note,
       'weight': instance.weight
     };
-
 
 Homework _$HomeworkFromJson(Map<String, dynamic> json) {
   return Homework(
@@ -45,8 +44,6 @@ Map<String, dynamic> _$HomeworkToJson(Homework instance) => <String, dynamic>{
       'title': instance.title
     };
 
-
-
 PrivateMessage _$PrivateMessageFromJson(Map<String, dynamic> json) {
   return PrivateMessage(
       id: json['id'] as String,
@@ -68,7 +65,6 @@ Map<String, dynamic> _$PrivateMessageToJson(PrivateMessage instance) =>
       'dateTime': instance.dateTime?.toIso8601String(),
       'type': instance.type
     };
-
 
 Subject _$SubjectFromJson(Map<String, dynamic> json) {
   return Subject(
@@ -117,18 +113,19 @@ Day _$DayFromJson(Map<String, dynamic> json) {
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       lessons: (json['lessons'] as List)
-          ?.map((e) =>
-              e == null ? null : _LessonsFromJson(e))
+          ?.map((e) => e == null ? null : _LessonsFromJson(e))
           ?.toList(),
       shortName: json['shortName'] as String);
 }
 
-List<Lesson> _LessonsFromJson(List<dynamic> json){
+List<Lesson> _LessonsFromJson(List<dynamic> json) {
   return json.map((j) => Lesson.fromJson(j)).toList();
 }
 
 Map<String, dynamic> _$DayToJson(Day instance) => <String, dynamic>{
-      'lessons': instance.lessons?.map((m) => m?.map((l) => l.toJson())?.toList())?.toList(),
+      'lessons': instance.lessons
+          ?.map((m) => m?.map((l) => l.toJson())?.toList())
+          ?.toList(),
       'date': instance.date?.toIso8601String(),
       'shortName': instance.shortName
     };
@@ -180,4 +177,33 @@ Map<String, dynamic> _$LessonTimeToJson(LessonTime instance) =>
       'caption': instance.caption,
       'beginTime': instance.beginTime,
       'endTime': instance.endTime
+    };
+
+School _$SchoolFromJson(Map<String, dynamic> json) {
+  return School(
+      bakawebLink: json['bakawebLink'] as String,
+      name: json['name'] as String,
+      bakawebVersion: json['bakawebVersion'] as String,
+      allowedModules:
+          (json['allowedModules'] as List)?.map((e) => e as String)?.toList());
+}
+
+Map<String, dynamic> _$SchoolToJson(School instance) => <String, dynamic>{
+      'bakawebLink': instance.bakawebLink?.toString(),
+      'name': instance.name,
+      'bakawebVersion': instance.bakawebVersion,
+      'allowedModules': instance.allowedModules
+    };
+
+Student _$StudentFromJson(Map<String, dynamic> json) {
+  return Student(
+      name: json['name'] as String,
+      schoolClass: json['schoolClass'] as String,
+      year: json['year'] as int);
+}
+
+Map<String, dynamic> _$StudentToJson(Student instance) => <String, dynamic>{
+      'name': instance.name,
+      'schoolClass': instance.schoolClass,
+      'year': instance.year
     };

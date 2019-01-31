@@ -322,6 +322,62 @@ class LessonTime {
   Map<String, dynamic> toJson() => _$LessonTimeToJson(this);
 }
 
+@JsonSerializable()
+class School {
+  /// Link to school's bakaweb login page
+  String bakawebLink;
+
+  /// Name of school. This often contains school address.
+  String name;
+
+  /// Version of Bakaláři school system
+  String bakawebVersion;
+
+  /// Allowed school modules. This list contains
+  /// modules identifiers. Some of the modules
+  /// may not be yet implemented by this library.
+  ///
+  /// If you know how to implement them, leave
+  /// a [GitHub issue](https://github.com/SoptikHa2/bakalari).
+  List<String> allowedModules;
+
+  School(
+      {this.bakawebLink, this.name, this.bakawebVersion, this.allowedModules});
+
+  factory School.fromJson(Map<String, dynamic> json) =>
+      _$SchoolFromJson(json);
+  Map<String, dynamic> toJson() => _$SchoolToJson(this);
+}
+
+/// This is student class.
+/// Each student class is associated with one
+/// `Bakalari` instance. All queries to the
+/// `Bakalari` instance direclty alters student
+/// connected to it.
+///
+/// Student class provides access to data about him.
+/// Data about school can be found in `School` class
+@JsonSerializable()
+class Student {
+  /// Name of student, reversed.
+  /// The name is in format `Surname Name`
+  String name;
+
+  /// Student's class, in format like `3.A`
+  String schoolClass;
+
+  /// Student's year in school
+  /// ("ročník")
+  int year;
+
+  Student({this.name, this.schoolClass, this.year});
+
+  factory Student.fromJson(Map<String, dynamic> json) =>
+      _$StudentFromJson(json);
+  Map<String, dynamic> toJson() => _$StudentToJson(this);
+}
+
+
 
 
 
