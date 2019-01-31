@@ -6,9 +6,6 @@
 library bakalari;
 
 import 'package:bakalari/definitions.dart';
-import 'package:bakalari/src/helpers.dart';
-import 'package:bakalari/src/student.dart';
-import 'package:bakalari/src/school.dart';
 import 'package:bakalari/src/modules/gradeModule.dart';
 import 'package:bakalari/src/modules/timetableModule.dart';
 import 'package:bakalari/src/modules/privateMessagesModule.dart';
@@ -232,6 +229,16 @@ class Bakalari {
           "Module ${module.identifier} is not allowed by school system.");
 
     return await module.getResult(_generateAuthToken(), _schoolAddress);
+  }
+
+  /// Get list of cities.
+  /// 
+  /// Usage: Let user choose one city from this list and
+  /// then call `getListOfSchools()`. This lists schools in selected city.
+  /// Then let user choose one of the schools. These schools in the list
+  /// have bakaweb URI included.
+  static Future<List<String>> getListOfCities() async {
+
   }
 
   /// This generates long-term key. Key generated from this method
