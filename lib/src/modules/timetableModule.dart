@@ -73,6 +73,7 @@ class TimetableModule {
         String lastLessonCaption = '0';
         for (var lesson in day.findAllElements('hod')) {
           var l = Lesson();
+          l.isSet = false;
           String lessonCaption = '';
           l.type = lesson.findElements('typ').first.text;
           l.lessonTime = timetable.times[lessonNumberInDay];
