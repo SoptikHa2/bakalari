@@ -65,13 +65,18 @@ class Homework {
   /// Short subject name (`M`)
   String subjectShort;
 
+  /// When was the homework issued
   DateTime from;
+  /// When is the homework due
   DateTime to;
 
+  /// ID of homework, expect few letters/numbers
   String id;
 
+  /// Status of homework, in words (completed, ...)
   String status;
 
+  /// Title of homework
   String title;
 
   Homework(
@@ -161,13 +166,16 @@ class Subject {
   /// Short subject name (`M`)
   String subjectShort;
 
+  /// Subject ID, expect few numbers/letters
   String subjectId;
 
+  /// Teacher name (full name and surname)
   String teacherName;
 
   /// Short teacher identifier (typically three letters of teacher's surname)
   String teacherShort;
 
+  /// Email of teacher
   String teacherEmail;
 
   /// In-school teacher phone number
@@ -228,7 +236,9 @@ class Day {
   /// permanent timetables, more differenet lessons can occur at the same
   /// time. In which case, the inner list will contain more lessons.
   List<List<Lesson>> lessons;
+  // Day date
   DateTime date;
+  // Short name of day (eg Tue)
   String shortName;
 
   Day({this.date, this.lessons, this.shortName});
@@ -285,7 +295,7 @@ class Lesson {
   LessonTime lessonTime;
 
   /// This determines if most of the fields here are set. If this is false,
-  /// probably there is no lesson sheduled and it makes no sence to try to get
+  /// there is probably no lesson sheduled and it makes no sense to try to get
   /// additional info about this lesson.
   bool isSet;
 
@@ -311,8 +321,11 @@ class Lesson {
 /// This is time when lesson occurs.
 @JsonSerializable()
 class LessonTime {
+  // Caption (eg `10:00 - 10:45`)
   String caption;
+  // Begin time, in string (eg `10:00`)
   String beginTime;
+  // End time, in string (eg `10:45`)
   String endTime;
 
   LessonTime({this.caption, this.beginTime, this.endTime});
