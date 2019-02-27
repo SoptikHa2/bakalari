@@ -1,3 +1,8 @@
+## Version 0.3.1
+Updated dependencies.
+
+Fixed issues with querying cities which names contain a dot.
+
 ## Version 0.3.0
 Moved all class definitions into `lib/definitions.dart`, so it can be
 easily imported and used.

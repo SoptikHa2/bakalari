@@ -30,7 +30,10 @@ class ListOfSchools {
   }
 
   static Future<List<School>> getSchoolsInCity(String city) async {
-    String encodedCityName = Uri.encodeComponent(city);
+    // When a city contains dot in it's name, it doesn't actually fetch.
+    // So send only the part before first dot and hope for the best
+    // (this should work, I think the official app does it the same way)
+    String encodedCityName = Uri.encodeComponent(city.split('.')[0]);
 
     var client = http.Client();
     http.Response response;
