@@ -129,6 +129,7 @@ class Bakalari {
       _student.schoolClass = xmlPayload.findAllElements('trida').first.text;
       _student.year =
           int.parse(xmlPayload.findAllElements('rocnik').first.text);
+      _student.key = _key;
     } catch (e) {
       throw BadResponseError('Unexpected response while logging in: ${response.body}', StackTrace.current);
     }

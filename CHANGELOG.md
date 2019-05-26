@@ -1,3 +1,6 @@
+## Version 0.3.3
+Hashed password is now available at `student.key`.
+
 ## Version 0.3.2
 Added an option to log in with hashed password, removing
 the need to always prompt for user password.

@@ -383,7 +383,12 @@ class Student {
   /// ("ročník")
   int year;
 
-  Student({this.name, this.schoolClass, this.year});
+  /// Student's hashed password. This can be
+  /// used to log into school account, so
+  /// keep this safe!
+  String key;
+
+  Student({this.name, this.schoolClass, this.year, this.key});
 
   factory Student.fromJson(Map<String, dynamic> json) =>
       _$StudentFromJson(json);
