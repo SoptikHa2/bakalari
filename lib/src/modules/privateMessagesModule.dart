@@ -13,7 +13,7 @@ class PrivateMessagesModule {
   String identifier = "prijate";
 
   /// Somewhen in the future, return list
-  /// of grades. This may throw an error if
+  /// of messages. This may throw an error if
   /// unsuccessful.
   Future<List<PrivateMessage>> getResult(
       String authKey, String schoolAddress) async {

@@ -1,3 +1,9 @@
+## Version 0.3.2
+Added an option to log in with hashed password, removing
+the need to always prompt for user password.
+
+Updated dependencies.
+
 ## Version 0.3.1
 Updated dependencies.
 

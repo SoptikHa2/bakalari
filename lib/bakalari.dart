@@ -83,6 +83,16 @@ class Bakalari {
     await _reloadBaseInfo(_generateAuthToken());
   }
 
+  /// Log into Bakalari school system.
+  /// This method works just as `logIn`, but it doesn't need password.
+  /// Instead, this accepts already hashed password.
+  /// If your application saves user's hashed password (available at `bakalari._key`),
+  /// this can be used to log in without prompting for user password.
+  Future<void> logInWithKey(String username, String key) async {
+    _key = key;
+    await _reloadBaseInfo(_generateAuthToken());
+  }
+
   /// This method reloads school, user, and allowed school modules.
   /// You shouldn't need to call this method at normal circumstances.
   Future<void> _reloadBaseInfo(String authKey) async {
